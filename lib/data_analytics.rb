@@ -1,5 +1,5 @@
 class Graph
-  attr_reader :graph, :nodes, :previous, :distance 
+  attr_reader :graph, :nodes, :previous, :distance
   INFINITY = 1 << 64
 
   def initialize
@@ -25,7 +25,33 @@ class Graph
 
 
   def dijkstra(source)
-
+    @distance={}
+    @previous={}
+    nodes.each do |node|
+     @distance[node] = INFINITY
+     @previous[node] = -1
+    end
+    @distance[source] = 0
+    unvisited_node = nodes.compact
+    while (unvisited_node.size > 0)
+     u = nil;
+     unvisited_node.each do |min|
+       if (not u) or (@distance[min] and @distance[min] < @distance[u])
+         u = min
+       end
+     end
+     if (@distance[u] == INFINITY)
+       break
+     end
+     unvisited_node = unvisited_node - [u]
+     graph[u].keys.each do |vertex|
+       alt = @distance[u] + graph[u][vertex]
+       if (alt < @distance[vertex])
+         @distance[vertex] = alt
+         @previous[vertex] = u  #A shorter path to v has been found
+       end
+     end
+    end
   end
 
   def find_path(dest)
@@ -36,8 +62,29 @@ class Graph
   end
 
   def shortest_paths(source)
+    @graph_paths=[]
+    @source = source
+    dijkstra source
+    nodes.each do |dest|
+      @path=[]
+
+      find_path dest
+
+      actual_distance=if @distance[dest] != INFINITY
+                      @distance[dest]
+                    else
+                      "no path"
+                    end
+      @graph_paths<< "Target(#{dest})  #{@path.join("-->")} : #{actual_distance}"
+    end
+    @graph_paths
   end
 
+  def print_result
+    @graph_paths.each do |graph|
+      puts graph
+    end
+  end
 end
 
 if __FILE__ == $0
@@ -52,8 +99,6 @@ if __FILE__ == $0
   gr.add_edge("f", "e", 2)
   gr.add_edge("e", "b", 9)
   gr.shortest_paths("a")
-  gr.print_result 
+  gr.print_result
 
 end
-
-
