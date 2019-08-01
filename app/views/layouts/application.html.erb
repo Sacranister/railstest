@@ -10,6 +10,35 @@
   </head>
 
   <body>
+    <div class="row between-xs">
+        <div class="col-xs-2">
+            <div class="box">
+                <h1>InstaShot</h1>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <div class="box">
+              <%if user_signed_in?%>
+                <% if current_user.typeofsession == 1%>
+                hola
+                <% elsif current_user.typeofsession == 2%>
+                 <%=link_to "Colores", colors_path%>
+                <% end%>
+              <%end%>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <div class="box">
+              <%if user_signed_in?%>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete%>
+              <%else %>
+                <%= link_to "Log in", new_user_session_path %>
+                <%= link_to "Sign up", new_user_registration_path%>
+              <%end%>
+            </div>
+        </div>
+    </div>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
