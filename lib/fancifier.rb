@@ -15,5 +15,3 @@ class Fancifier
 		name = name || super
 	end
 end
-
-

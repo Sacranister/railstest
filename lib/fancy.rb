@@ -1,6 +1,6 @@
 module Fancy
 	def createfancy
-		@fancifier = MakeFancy.new(self.title)
+		@fancifier = MakeFancy.new(@post.title)
 		@fancifier.palindrome
 	end
 
@@ -9,7 +9,9 @@ module Fancy
 		def initialize(fancy)
 			@title = fancy
 		end
-
+		def palindrome
+			@title+@title.reverse
+		end
 	end
-	
+
 end
