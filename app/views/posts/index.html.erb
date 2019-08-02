@@ -1,29 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>Photo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<%= link_to 'New Post', new_post_path, class: "btn btn-outline-primary"%>
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><image src="<%=url_for(post.photo)%>"></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="center-align">
+      <h1 style="color: <%= post.color.code%>"> <%= post.title %> </h1>
+    </div>
+    <div class="image, max-dimension center-align">
+      <%= image_tag(url_for post.photo) %>
+    </div>
+        <%= link_to 'Show', post, class: "btn btn-outline-primary" %>
+        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-outline-primary" %>
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+      <hr>
+      <hr>
     <% end %>
-  </tbody>
-</table>
 
 <br>
-
-<%= link_to 'New Post', new_post_path %>

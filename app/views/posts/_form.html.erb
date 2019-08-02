@@ -12,19 +12,19 @@
   <% end %>
   <div class="color">
     <%= form.label :color %><br>
-    <%= form.collection_select :color_id, Color.all, :id, :name %>
+    <%= form.collection_select :color_id, Color.all, :id, :name,{ include_blank: false }, {class: "form-control"} %>
   </div>
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :photo %>
-    <%= form.file_field :photo %>
+    <%= form.file_field :photo, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "btn btn-primary" %>
   </div>
 <% end %>

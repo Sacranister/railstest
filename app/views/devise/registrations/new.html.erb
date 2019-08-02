@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
 
   <div class="field">
@@ -13,19 +13,19 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password",class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control" %>
   </div>
   <div class="field">
     <%=f.label "User type:"%>
-    <%= f.select :typeofsession, options_for_select([['Normal User', 1], ['Marketing', 2]], 1) %>
+    <%= f.select :typeofsession, options_for_select([['Normal User', 1], ['Marketing', 2]], 1),{ include_blank: false }, {class: "form-control"} %>
   </div>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit :class => "btn btn-primary" %>
   </div>
 <% end %>
 
