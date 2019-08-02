@@ -20,7 +20,7 @@
             <div class="box">
               <%if user_signed_in?%>
                 <% if current_user.typeofsession == 1%>
-                hola
+                <%= link_to "Tus Posts", posts_path %>
                 <% elsif current_user.typeofsession == 2%>
                  <%=link_to "Colores", colors_path%>
                 <% end%>
